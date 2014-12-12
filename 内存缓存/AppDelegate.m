@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "UIImageView+WebCache.h"
 @interface AppDelegate ()
 
 @end
@@ -16,7 +16,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    //设置内存缓存大小，以天气情况为例
+    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024 diskCapacity:10 * 1024 * 1024 diskPath:nil];
+    [NSURLCache setSharedURLCache:URLCache];
+    
+    //设置图片缓存大小
+    
+    SDImageCache* imageCache = [SDImageCache sharedImageCache];
+    [imageCache setMaxMemoryCost:4*1024*1024];//最大的内存图像缓存4M
+    [imageCache setMaxCacheSize:10*1024*1024];//缓存的最大大小,以字节为单位 10M
     return YES;
 }
 

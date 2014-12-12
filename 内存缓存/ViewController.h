@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef void (^CallBack)(id obj);
 @interface ViewController : UIViewController
 
 
